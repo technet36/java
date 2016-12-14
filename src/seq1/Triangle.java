@@ -5,6 +5,7 @@ package seq1;
  */
 public class Triangle {
 
+
     public Triangle(int val) {
         //afficheLigne(3);
         demiTriangleIsocele(val);
