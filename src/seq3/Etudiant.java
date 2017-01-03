@@ -5,66 +5,37 @@ import java.util.ArrayList;
 /**
  * Created by moran on 03/01/2017.
  */
-public class Etudiant {
-    private String login;
-    private String nom;
-    private String prenom;
-    private String adresse;
-    private ArrayList notes;
+public class Etudiant extends Personne {
 
-    public Etudiant(String login, String nom, String prenom) {
-        this.login = login;
-        this.nom = nom;
-        this.prenom = prenom;
+    private String addresseParents;
+
+    public Etudiant(String nom, String prenom, String login){
+        super(nom, prenom, login);
     }
 
-    public String getLogin() {
-        return login;
+    public Etudiant(String login, String nom, String prenom, String adresseE, String adresseP) {
+        super(login, nom, prenom, adresseE);
+        this.addresseParents = adresseP;
     }
 
-    public String getNom() {
-        return nom;
+    public void setAddresseParents(String addresseParents) {
+        this.addresseParents = addresseParents;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getAdresseParents() {
+        return addresseParents;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public String getMail() {
-        return prenom+"."+nom+"@etu.univ-grenoble.fr";
-    }
-
-    public String getNomComplet() {
-        return prenom+" "+nom;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public ArrayList getNotes() {
-        return notes;
-    }
-
-    public void addNotes(float note) {
-        this.notes.add(note);
+    public String getMail(){
+        String nom = getNom();
+        String prenom = getPrenom();
+            return prenom+"."+nom+"@etu.univ-grenoble.fr";
     }
 
     @Override
     public String toString() {
-        return "Etudiant.Etudiant{" +
-                "login='" + login + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", adresse='" + adresse + '\'' +
+        return "Etudiant{" +
+                "addresseParents='" + addresseParents + '\'' +
                 '}';
     }
 }
