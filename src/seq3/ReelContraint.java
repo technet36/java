@@ -6,14 +6,15 @@ import java.util.Scanner;
  * Created by moran on 03/01/2017.
  */
 public class ReelContraint {
-    private float min = 0;
-    private float max = 20;
+    private float min ;
+    private float max ;
     private float valeur;
 
 
     public ReelContraint(float min, float max) {
         this.min = min;
         this.max = max;
+        this.valeur = min;
     }
 
     public float getValeur() {
@@ -21,15 +22,18 @@ public class ReelContraint {
     }
 
     public void setValeur(float valeur) {
-        this.valeur = valeur;
+        if (valeur>=min && valeur<=max)
+            this.valeur = valeur;
     }
 
     public void saisir() {
+        float maNote;
         Scanner entree = new Scanner(System.in);
-        System.out.print("Saisir la note : ");
-        int monInt ;
-        monInt = entree.nextInt();
-        setValeur(monInt);
+        do {
+            System.out.print("Saisir la Note : ");
+            maNote = entree.nextFloat();
+            setValeur(maNote);
+        }while (maNote<this.min || maNote>this.max);
     }
 
     @Override
