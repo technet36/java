@@ -1,11 +1,12 @@
 package seq4;
 
-import seq3.ReelContraint;
+import java.util.ArrayList;
 
 /**
  * Created by moran on 04/01/2017.
  */
 public class Note extends ReelContraint{
+
 
     public Note(float note) {
         super(0,20);

@@ -8,15 +8,17 @@ import java.util.ArrayList;
 public class Etudiant extends Personne {
 
     private String addresseParents;
-    private ArrayList<Note> bulletin = new ArrayList<Note>() ;
+    private ArrayList<Note> notes ;
 
     public Etudiant(String nom, String prenom, String login){
         super(nom, prenom, login);
+        notes = new ArrayList<>();
     }
 
     public Etudiant(String login, String nom, String prenom, String adresseE, String adresseP) {
         super(login, nom, prenom, adresseE);
         this.addresseParents = adresseP;
+        notes = new ArrayList<>();
     }
 
     public void setAddresseParents(String addresseParents) {
@@ -33,33 +35,29 @@ public class Etudiant extends Personne {
             return prenom+"."+nom+"@etu.univ-grenoble.fr";
     }
 
-    public String getBulletin() {
-        int size = this.bulletin.size();
-        float myTab[] = new float[size];
-        for (int i=0; i < size;i++) {
-            myTab[i] = bulletin.get(i).getValeur();
-            //System.out.println(bulletin.get(i).getValeur());
-            //System.out.println(myTab[i]);
-            //System.out.println(myTab);
-
-        }
-        return bulletin.toString();
+    public ArrayList<Note> getNotes() {
+        return notes;
     }
 
     public void addNote() {
         Note maNote = new Note();
         maNote.saisir();
-       this.bulletin.add(maNote);
+       this.notes.add(maNote);
+    }
+    public void addNote(float maValeur){
+        Note maNote = new Note(maValeur);
+        this.notes.add(maNote);
     }
 
-    public float getMoyenne () {
-        int size = bulletin.size();
-        float maMoyenne = 0;
-        for (Note aBulletin : bulletin) {
-            maMoyenne = maMoyenne+ aBulletin.getValeur();
-        }
-        return maMoyenne/size;
+    public Note getMoyenne () {
+        int size = notes.size();
+        Note maMoyenne = new Note(0);
+        for (Note aBulletin : notes)
+            maMoyenne.setValeur(maMoyenne.getValeur()+ aBulletin.getValeur()/aBulletin.getMax());
+        maMoyenne.setValeur(maMoyenne.getValeur()/size*maMoyenne.getMax());
+        return maMoyenne;
     }
+
 
     @Override
     public String toString() {
